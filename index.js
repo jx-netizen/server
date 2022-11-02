@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import Connection from "./Connection/db.js";
 import DefaultData from "./default.js";
 import Router from "./Routes/route.js";
@@ -26,6 +27,7 @@ app.listen(PORT,()=>{
 
 DefaultData();
 app.use(cors());
-
+app.use(bodyParser.json({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}))
 
 app.use('/',Router);
